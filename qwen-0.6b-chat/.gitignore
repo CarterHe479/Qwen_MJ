@@ -1,0 +1,33 @@
+# Python 编译文件
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.pyc
+__pycache__/
+
+# 模型文件（通常体积较大，不应提交到仓库）
+*.gguf
+
+# 向量数据库相关（可由脚本重新生成）
+*.index
+*.pkl
+
+# 虚拟环境（如果你有）
+venv/
+env/
+virtualenv/
+*.egg-info/
+dist/
+build/
+
+# IDE 相关
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 日志与缓存
+*.log
+/cache/
+/logs/
