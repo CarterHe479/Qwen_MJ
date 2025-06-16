@@ -19,7 +19,8 @@ def ask_rag(query):
     retrieved_docs = search(query)
     context = "\n".join(retrieved_docs)
     prompt = f"请根据以下内容回答问题：\n\n{context}\n\n问题：{query}\n回答："
-    result = llm(prompt, max_tokens=512)
+    result = llm(prompt, max_tokens=512, stop=["问题：", "Question:", "Q:", "选项：", "答案："])
+
 
     # return result["choices"][0]["text"].strip()
     return result
