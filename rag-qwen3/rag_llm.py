@@ -2,6 +2,8 @@ import faiss
 import pickle
 from sentence_transformers import SentenceTransformer
 from llama_cpp import Llama
+from rerank_utils import rerank
+from query_expander import expand_query
 
 index = faiss.read_index("faiss.index")
 with open("docs.pkl", "rb") as f:
@@ -15,9 +17,26 @@ def search(query, top_k=3):
     D, I = index.search(query_embedding, top_k)
     return [docs[i] for i in I[0]]
 
+def search_fused(query, top_k=3):
+    expanded_queries = expand_query(query)
+
+    all_chunks = []
+    for q in expanded_queries:
+        emb = encoder.encode([q], normalize_embeddings=True)
+        D, I = index.search(emb, top_k)
+        for idx in I[0]:
+            all_chunks.append(docs[idx])
+
+    # 去重
+    all_chunks = list(dict.fromkeys(all_chunks))  # 保留顺序
+    return all_chunks
+
+
 def ask_rag(query):
-    retrieved_docs = search(query)
-    context = "\n".join(retrieved_docs)
+    retrieved_docs = search_fused(query)
+    # 使用引入的重排模型
+    reranked_docs = rerank(query, retrieved_docs, top_k=3)
+    context = "\n".join(reranked_docs)
     prompt = f"请根据以下内容回答问题：\n\n{context}\n\n问题：{query}\n回答："
     result = llm(prompt, max_tokens=512, stop=["问题：", "Question:", "Q:", "选项：", "答案："])
 
