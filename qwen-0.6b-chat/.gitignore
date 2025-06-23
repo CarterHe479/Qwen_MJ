@@ -39,4 +39,3 @@ rag-qwen3/hf_model/
 *.pdf
 # tokenizer.json
 tokenizer.json
-
