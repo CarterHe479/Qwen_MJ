@@ -27,8 +27,15 @@ data/kb_docs.txt
 # HuggingFace downloaded models
 rag-qwen3/hf_model/
 
-# macOS system files
-.DS_Store
+# 忽略所有 macOS 垃圾文件
+*.DS_Store
 
+# 忽略所有 HF 本地模型缓存
+**/hf_model/
+**/*.json
+**/*.bin
+
+# 忽略所有大文档
+*.pdf
 # tokenizer.json
 tokenizer.json
