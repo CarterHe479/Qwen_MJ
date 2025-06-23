@@ -1,4 +1,6 @@
 from rag_llm import ask_rag
+import os
+os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 
 while True:
     query = input("请输入问题：(输入exit退出)")

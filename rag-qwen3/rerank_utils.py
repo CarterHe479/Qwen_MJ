@@ -1,6 +1,8 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 
+# reranker_path = "/Users/carterhe/hf_models/bge-reranker-base"
+
 # 加载中文精排模型
 tokenizer = AutoTokenizer.from_pretrained("BAAI/bge-reranker-base")
 model = AutoModelForSequenceClassification.from_pretrained("BAAI/bge-reranker-base")

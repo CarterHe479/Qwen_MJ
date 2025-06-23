@@ -1,3 +1,13 @@
+# Core
 sentence-transformers
 faiss-cpu
 llama-cpp-python
+transformers
+
+# Optional for summarization
+torch
+accelerate
+
+# Optional: reranker, paraphrase
+scikit-learn
+numpy

@@ -1,33 +1,31 @@
-# Python 编译文件
-__pycache__
-*.pyc
+# Python cache
+__pycache__/
+*.py[cod]
 *.pyo
 *.pyd
-*.pyc
-__pycache__/
+*.so
 
-# 模型文件（通常体积较大，不应提交到仓库）
-*.gguf
-
-# 向量数据库相关（可由脚本重新生成）
-*.index
-*.pkl
-
-# 虚拟环境（如果你有）
-venv/
+# Virtual environment
 env/
-virtualenv/
-*.egg-info/
-dist/
-build/
+venv/
+.qwen3-env/
+.qwen3/
 
-# IDE 相关
-.idea/
-.vscode/
-*.swp
-*.swo
+# Model weights (local large files)
+*.gguf
+*.bin
+*.pt
 
-# 日志与缓存
-*.log
-/cache/
-/logs/
+# Vector index / embedding cache
+*.pkl
+*.index
+
+# RAG documents (optional)
+example.pdf
+data/kb_docs.txt
+
+# HuggingFace downloaded models
+rag-qwen3/hf_model/
+
+# macOS system files
+.DS_Store
