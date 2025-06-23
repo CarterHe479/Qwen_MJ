@@ -29,3 +29,6 @@ rag-qwen3/hf_model/
 
 # macOS system files
 .DS_Store
+
+# tokenizer.json
+tokenizer.json
